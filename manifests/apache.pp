@@ -1,9 +1,7 @@
 class sscg_profiles::apache {
 
   class { 'apache':
-    default_vhost => false,
     mpm_module    => 'prefork',
-    listen        => '80',
   }
 
   class { '::apache::mod::php': }
