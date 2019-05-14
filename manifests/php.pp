@@ -5,4 +5,8 @@ class sscg_profiles::php {
     ensure => 'latest',
   }
 
+  package { 'php-mysql':
+    ensure => 'installed',
+  }
+
 }
