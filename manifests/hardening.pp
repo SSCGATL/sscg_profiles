@@ -10,4 +10,20 @@ class sscg_profiles::hardening {
     source => 'puppet:///modules/sscg_profiles/CIS.conf',
   }
 
+  # Ensure the aide package is installed
+  package { 'aide':
+    ensure => 'installed',
+  }
+
+  -> exec { 'init_aide':
+    path    => '/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin',
+    command => 'aide --init',
+    creates => '/var/lib/aide/aide.db.new.gz',
+  }
+
+  -> exec { 'setup_aide_db':
+    path    => '/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin',
+    command => 'mv /var/lib/aide/aide.db.new.gz /var/lib/aide/aide.db.gz',
+  }
+
 }
