@@ -36,4 +36,12 @@ class sscg_profiles::hardening {
     minute  => '01',
   }
 
+  # Secure the Boot Configuration
+  file { '/boot/grub2/grub.cfg':
+    ensure => 'file',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0600',
+  }
+
 }
