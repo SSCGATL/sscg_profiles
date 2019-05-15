@@ -64,4 +64,21 @@ class sscg_profiles::hardening {
     line   => 'kernel.randomize_va_space = 2',
   }
 
+  # Force SELinux to remain on
+  file_line { 'selinux_enable':
+    ensure => 'present',
+    path   => '/etc/sysconfig/selinux',
+    line   => 'SELINUX=enforcing',
+  }
+
+  # Ensure SELinux Troubleshooting Tool is Uninstalled
+  package { 'setroubleshoot':
+    ensure => 'absent',
+  }
+
+  # Ensure the MCS Translation Service is uninstalled
+  package { 'mctrans':
+    ensure => 'absent',
+  }
+
 }
