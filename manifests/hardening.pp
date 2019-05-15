@@ -57,4 +57,11 @@ class sscg_profiles::hardening {
     line   => 'fs.suid_dumpable = 0',
   }
 
+  # Randomize VA space
+  file_line { 'randomize_mem':
+    ensure => 'present',
+    path   => '/etc/sysctl.conf',
+    line   => 'kernel.randomize_va_space = 2',
+  }
+
 }
