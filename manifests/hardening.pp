@@ -25,6 +25,7 @@ class sscg_profiles::hardening {
   -> exec { 'setup_aide_db':
     path    => '/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin',
     command => 'mv /var/lib/aide/aide.db.new.gz /var/lib/aide/aide.db.gz',
+    onlyif  => 'test -f /var/lib/aide/aide.db.new.gz',
   }
 
 }
