@@ -15,7 +15,7 @@ class sscg_profiles::hardening {
 
   # Remove the filesystem kernel modules from the server
   $fs_modules.each | String $module | {
-    exec { 'remove_fs_modules':
+    exec { 'remove_fsmodules':
       path    => '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin',
       command => "/usr/sbin/rmmod ${module}",
       require => File['/etc/modprobe.d/CIS.conf'],
