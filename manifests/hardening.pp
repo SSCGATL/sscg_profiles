@@ -44,4 +44,17 @@ class sscg_profiles::hardening {
     mode   => '0600',
   }
 
+  # Limit core files
+  file_line { 'limit_cores':
+    ensure => 'present',
+    path   => '/etc/security/limits.conf',
+    line   => '* hard core 0',
+  }
+
+  file_line { 'fs_non_dumpable':
+    ensure => 'present',
+    path   => '/etc/sysctl.conf',
+    line   => 'fs.suid_dumpable = 0',
+  }
+
 }
