@@ -10,7 +10,7 @@ class sscg_profiles::hardening {
     source => 'puppet:///modules/sscg_profiles/CIS.conf',
   }
 
-  # Ensure the aide package is installed
+  # Ensure the aide package is installed and configured
   package { 'aide':
     ensure => 'installed',
   }
@@ -26,6 +26,14 @@ class sscg_profiles::hardening {
     path    => '/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin',
     command => 'mv /var/lib/aide/aide.db.new.gz /var/lib/aide/aide.db.gz',
     onlyif  => 'test -f /var/lib/aide/aide.db.new.gz',
+  }
+
+  # Set crontab to run aide periodically
+  cron { 'aide':
+    command => '/usr/sbin/aide --check',
+    user    => 'root',
+    hour    => '2',
+    minute  => '01',
   }
 
 }
