@@ -88,4 +88,17 @@ class sscg_profiles::hardening {
     line   => 'net.ipv4.ip_forward = 0'
   }
 
+  # Turn off ICMP Redirects
+  file_line { 'icmp_redirects':
+    ensure => 'present',
+    path   => '/etc/sysctl.conf',
+    line   => 'net.ipv4.conf.all.send_redirects = 0',
+  }
+
+  file_line { 'icmp__send_redirects':
+    ensure => 'present',
+    path   => '/etc/sysctl.conf',
+    line   => 'net.ipv4.conf.default.send_redirects = 0',
+  }
+
 }
