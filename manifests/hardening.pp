@@ -81,4 +81,11 @@ class sscg_profiles::hardening {
     ensure => 'absent',
   }
 
+  # Turn off ip forwarding
+  file_line { 'ip_forward':
+    ensure => 'present',
+    path   => '/etc/sysctl.conf',
+    line   => 'net.ipv4.ip_forward = 0'
+  }
+
 }
