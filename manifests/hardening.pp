@@ -127,4 +127,17 @@ class sscg_profiles::hardening {
     line   => 'net.ipv4.conf.default.accept_redirects = 0',
   }
 
+  # Don't accept ICMP Redirects
+  file_line { 'no_accept_all_secure_redirects':
+    ensure => 'present',
+    path   => '/etc/sysctl.conf',
+    line   => 'net.ipv4.conf.all.secure_redirects = 0',
+  }
+
+  file_line { 'no_accept_default_secure_redirects':
+    ensure => 'present',
+    path   => '/etc/sysctl.conf',
+    line   => 'net.ipv4.conf.default.secure_redirects = 0',
+  }
+
 }
