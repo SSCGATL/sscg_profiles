@@ -101,6 +101,7 @@ class sscg_profiles::hardening {
     line   => 'net.ipv4.conf.default.send_redirects = 0',
   }
 
+  # Accept Source Routing off
   file_line { 'all_accept_source_route':
     ensure => 'present',
     path   => '/etc/sysctl.conf',
@@ -111,6 +112,19 @@ class sscg_profiles::hardening {
     ensure => 'present',
     path   => '/etc/sysctl.conf',
     line   => 'net.ipv4.conf.default.accept_source_route = 0',
+  }
+
+  # Don't accept ICMP Redirects
+  file_line { 'no_accept_all_icmp_redirects':
+    ensure => 'present',
+    path   => '/etc/sysctl.conf',
+    line   => 'net.ipv4.conf.all.accept_redirects = 0',
+  }
+
+  file_line { 'no_accept_default_icmp_redirects':
+    ensure => 'present',
+    path   => '/etc/sysctl.conf',
+    line   => 'net.ipv4.conf.default.accept_redirects = 0',
   }
 
 }
