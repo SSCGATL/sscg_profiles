@@ -95,10 +95,22 @@ class sscg_profiles::hardening {
     line   => 'net.ipv4.conf.all.send_redirects = 0',
   }
 
-  file_line { 'icmp__send_redirects':
+  file_line { 'icmp_send_redirects':
     ensure => 'present',
     path   => '/etc/sysctl.conf',
     line   => 'net.ipv4.conf.default.send_redirects = 0',
+  }
+
+  file_line { 'all_accept_source_route':
+    ensure => 'present',
+    path   => '/etc/sysctl.conf',
+    line   => 'net.ipv4.conf.all.accept_source_route = 0',
+  }
+
+  file_line { 'default_accept_source_route':
+    ensure => 'present',
+    path   => '/etc/sysctl.conf',
+    line   => 'net.ipv4.conf.default.accept_source_route = 0',
   }
 
 }
