@@ -140,4 +140,17 @@ class sscg_profiles::hardening {
     line   => 'net.ipv4.conf.default.secure_redirects = 0',
   }
 
+  # Log suspicious Packets
+  file_line { 'all_log_martians':
+    ensure => 'present',
+    path   => '/etc/sysctl.conf',
+    line   => 'net.ipv4.conf.all.log_martians = 1',
+  }
+
+  file_line { 'defualt_log_martians':
+    ensure => 'present',
+    path   => '/etc/sysctl.conf',
+    line   => 'net.ipv4.conf.default.log_martians = 1',
+  }
+
 }
