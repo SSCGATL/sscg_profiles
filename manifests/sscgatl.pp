@@ -9,7 +9,4 @@ class sscg_profiles::sscgatl {
       'www.ssconsultinggroup.net',
     ],
   }
-
-  apache::mod { 'mod_php': }
-
 }
