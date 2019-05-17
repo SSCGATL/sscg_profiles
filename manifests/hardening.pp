@@ -153,4 +153,64 @@ class sscg_profiles::hardening {
     line   => 'net.ipv4.conf.default.log_martians = 1',
   }
 
+  # Ignore broadcast ICMP
+  file_line { 'ignore_broadcast_icmp':
+    ensure => 'present',
+    path   => '/etc/sysctl.conf',
+    line   => 'net.ipv4.icmp_echo_ignore_broadcasts = 1',
+  }
+
+  # Ignore bogus ICMP responses
+  file_line { 'ignore_bogus_icmp':
+    ensure => 'present',
+    path   => '/etc/sysctl.conf',
+    line   => 'net.ipv4.icmp_ignore_bogus_error_responses = 1',
+  }
+
+  # Reverse Path Filtering
+  file_line { 'all_reverse_path_filter':
+    ensure => 'present',
+    path   => '/etc/sysctl.conf',
+    line   => 'net.ipv4.conf.all.rp_filter = 1',
+  }
+
+  file_line { 'default_reverse_path_filter':
+    ensure => 'present',
+    path   => '/etc/sysctl.conf',
+    line   => 'net.ipv4.conf.default.rp_filter = 1',
+  }
+
+  # Enable TCP SYN Cookies
+  file_line { 'enable_tcp_syncookies':
+    ensure => 'present',
+    path   => '/etc/sysctl.conf',
+    line   => 'net.ipv4.tcp_syncookies = 1',
+  }
+
+  # Disable IPv6 Router Advertisements
+  file_line { 'all_accept_ra':
+    ensure => 'present',
+    path   => '/etc/sysctl.conf',
+    line   => 'net.ipv6.conf.all.accept_ra = 0',
+  }
+
+  file_line { 'default_accept_ra':
+    ensure => 'present',
+    path   => '/etc/sysctl.conf',
+    line   => 'net.ipv6.conf.default.accept_ra = 0',
+  }
+
+  # Disable IPv6 Redirects
+  file_line { 'all_ipv6_redirects':
+    ensure => 'present',
+    path   => '/etc/sysctl.conf',
+    line   => 'net.ipv6.conf.all.accept_redirects = 0',
+  }
+
+  file_line { 'default_ipv6_redirects':
+    ensure => 'present',
+    path   => '/etc/sysctl.conf',
+    line   => 'net.ipv6.conf.default.accept_redirects = 0',
+  }
+
 }
