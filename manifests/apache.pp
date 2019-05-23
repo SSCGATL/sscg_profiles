@@ -4,8 +4,6 @@ class sscg_profiles::apache {
     mpm_module    => 'prefork',
   }
 
-  class { '::apache::mod::php': }
-
   # Ensure subdirectories always get owned by Apache
   file { '/var/www/html':
     ensure  => 'directory',
