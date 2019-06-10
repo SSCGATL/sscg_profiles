@@ -3,5 +3,6 @@ class sscg_profiles::base {
 
   include sscg_profiles::hardening
   include sscg_profiles::ntp
+  include sscg_profiles::java
 
 }
