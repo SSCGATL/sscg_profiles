@@ -7,6 +7,8 @@ class sscg_profiles::sscgatl {
     servername    => 'ssconsultinggroup.net',
     serveraliases => [
       'www.ssconsultinggroup.net',
+      'www.sscgatl.com',
+      'sscgatl.com',
     ],
   }
 }
